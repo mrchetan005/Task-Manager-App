@@ -1,1 +1,79 @@
+<!DOCTYPE html>
+<html lang="en">
+	<head>
+		<meta charset="UTF-8" />
+		<meta name="viewport" content="width=device-width, initial-scale=1.0" />
+		<title>Task Manager App</title>
+		<link rel="stylesheet" href="./styles.css" />
+	</head>
+	<body>
+		<header class="header">
+			<h1>Task Manager</h1>
+		</header>
+		<main class="container">
+			<section class="section" id="open-section" data-state="open">
+				<h2>Open</h2>
+				<div class="task-list" id="open"></div>
+			</section>
+			<section class="section" id="in-progress-section">
+				<h2>In Progress</h2>
+				<div class="task-list" id="in-progress"></div>
+			</section>
+			<section class="section" id="in-review-section">
+				<h2>In Review</h2>
+				<div class="task-list" id="in-review"></div>
+			</section>
+			<section class="section" id="done-section">
+				<h2>Done</h2>
+				<div class="task-list" id="done"></div>
+			</section>
+		</main>
 
+		<section class="modal" id="add-task-modal">
+			<div class="modal-content">
+				<span class="close">&times;</span>
+				<h2>Add Task</h2>
+				<input
+					type="text"
+					class="task-title"
+					id="task-title"
+					placeholder="Title..."
+				/>
+				<textarea
+					class="task-description"
+					id="task-description"
+					placeholder="Description..."
+				></textarea>
+				<button class="submit-btn" id="submit-task-btn">Submit</button>
+			</div>
+		</section>
+
+		<section class="modal" id="edit-task-modal">
+			<div class="modal-content">
+				<span class="close">&times;</span>
+				<h2>Edit Task</h2>
+				<input
+					type="text"
+					class="task-title"
+					id="edit-task-title"
+					placeholder="Title..."
+				/>
+				<textarea
+					id="edit-task-description"
+					class="task-description"
+					placeholder="Description..."
+				></textarea>
+				<button class="submit-btn" id="update-task-btn">Update</button>
+				<button class="submit-btn delete-btn" id="delete-task-btn">
+					Delete
+				</button>
+			</div>
+		</section>
+
+		<section class="add-task-icon">
+			<span id="plus-icon">&#43;</span>
+		</section>
+
+		<script src="./App.js"></script>
+	</body>
+</html>

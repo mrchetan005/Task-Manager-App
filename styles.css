@@ -1,1 +1,232 @@
+@import url("https://fonts.googleapis.com/css2?family=Noto+Serif:wght@400;700&family=Open+Sans&display=swap");
 
+* {
+	margin: 0;
+	padding: 0;
+	box-sizing: border-box;
+}
+
+body {
+	background: linear-gradient(to bottom, #d09cfa 0%, #72ffff 100%);
+	background-repeat: no-repeat;
+	min-height: 100vmax;
+	height: 100%;
+}
+
+::-webkit-scrollbar {
+	width: 8px;
+}
+
+::-webkit-scrollbar-thumb {
+	background-color: #72ffff;
+}
+
+body,
+button {
+	font-family: "Noto Serif", serif;
+}
+
+h3,
+pre,
+::placeholder,
+input,
+textarea {
+	font-family: "Open Sans", sans-serif;
+}
+
+.header h1 {
+	position: fixed;
+	top: 0;
+	left: 0;
+	right: 0;
+	text-align: center;
+	padding: 10px;
+	background: linear-gradient(to bottom, #e384ff 0%, #d09cfa 100%);
+}
+
+.container {
+	display: grid;
+	grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
+	grid-gap: 10px;
+	padding: 10px;
+	margin-top: 4rem;
+}
+
+.section {
+	margin: 10px;
+	padding: 10px;
+	background-color: #fffbeb;
+}
+
+.section h2 {
+	padding: 0 10px;
+}
+
+.task-list {
+	min-height: 500px;
+	margin-top: 10px;
+	padding: 10px;
+}
+
+.task {
+	padding: 10px;
+	margin-bottom: 20px;
+	background-color: #fff;
+	cursor: pointer;
+	transition: 250ms ease;
+	box-shadow: -3px 5px 4px rgba(0, 0, 0, 0.16);
+}
+
+.task pre {
+	border-top: 1px solid #ccc;
+	margin: 10px 0;
+	padding-top: 10px;
+}
+
+.tag {
+	height: 10px;
+	width: 35px;
+	border-radius: 7px;
+	margin-bottom: 5px;
+}
+
+#open-section .tag {
+	background-color: #f00;
+}
+
+#in-progress-section .tag {
+	background-color: #00f;
+}
+
+#in-review-section .tag {
+	background-color: #bc3fff;
+}
+
+#done-section .tag {
+	background-color: #0f0;
+}
+
+.modal {
+	display: none;
+	position: fixed;
+	z-index: 1;
+	left: 0;
+	top: 0;
+	width: 100%;
+	height: 100%;
+	overflow: auto;
+	background-color: rgba(0, 0, 0, 0.4);
+}
+
+.modal-content {
+	background-color: #fff;
+	margin: 10% auto;
+	padding: 20px;
+	width: 60%;
+	max-width: 600px;
+}
+
+.close {
+	float: right;
+	cursor: pointer;
+	font-size: 25px;
+	height: 30px;
+	width: 30px;
+	text-align: center;
+}
+
+.close:hover {
+	color: #f00;
+}
+
+.task-title,
+.task-description {
+	width: 90%;
+	margin-top: 10px;
+	padding: 5px;
+	font-size: 18px;
+}
+
+.task-description {
+	resize: none;
+	min-height: 100px;
+}
+
+.submit-btn {
+	background-color: #4caf50;
+	color: #fff;
+	padding: 5px 10px;
+	border: none;
+	font-size: 1rem;
+	border-radius: 3px;
+	cursor: pointer;
+	margin-top: 10px;
+}
+
+.submit-btn:hover {
+	background-color: #45a049;
+}
+
+.delete-btn {
+	background-color: #f50;
+}
+
+.delete-btn:hover {
+	background-color: #f00;
+}
+
+.edit-btn {
+	display: block;
+	border: none;
+	height: 30px;
+	width: 30px;
+	font-size: 24px;
+	background-color: transparent;
+	text-align: center;
+	border-radius: 50%;
+	margin-left: auto;
+	cursor: pointer;
+	/* transform: rotate(90deg); */
+	text-shadow: -5px 5px 4px rgba(0, 0, 0, 0.56);
+	transition: 250ms ease;
+}
+
+.edit-btn:hover {
+	color: #f00;
+	transform: translateY(2px) rotate(90deg);
+	text-shadow: 5px -5px 4px rgba(255, 0, 0, 0.56);
+}
+
+.dragging {
+	opacity: 0.6;
+}
+
+.drag-over {
+	border: 2px dashed #000;
+	background-color: rgba(0, 0, 0, 0.1);
+}
+
+.add-task-icon {
+	position: fixed;
+	right: 1rem;
+	bottom: 1.5rem;
+	height: 60px;
+	width: 60px;
+	display: flex;
+	justify-content: center;
+	align-items: center;
+	border-radius: 34px;
+	box-shadow: 0 5px 4px 0 rgba(0, 0, 0, 0.26);
+	background-color: #35fc3b;
+	cursor: pointer;
+}
+
+#plus-icon {
+	font-size: 48px;
+}
+
+@media screen and (max-width: 560px) {
+	.modal-content {
+		width: 85%;
+	}
+}
