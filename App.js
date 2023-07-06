@@ -130,8 +130,8 @@ function openEditModal(task) {
     const deleteBtn = modal.querySelector('#delete-task-btn');
     deleteBtn.addEventListener('click', () => {
         tasks = tasks.filter((t) => t.id !== task.id);
-        // saveTasks();
-        // renderTasks();
+        saveTasks();
+        renderTasks();
         modal.style.display = 'none';
     });
 }
