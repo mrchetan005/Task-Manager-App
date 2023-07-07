@@ -45,6 +45,7 @@ function createTaskElement(task) {
     const taskEditButton = document.createElement('button');
     taskEditButton.className = 'edit-btn'
     taskEditButton.innerHTML = '&#9998;';
+    taskEditButton.id = Math.ceil(Math.random() * 10000000);
     taskElement.appendChild(taskEditButton);
 
     // Event listener for task click to open modal for editing/deleting
