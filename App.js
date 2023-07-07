@@ -102,6 +102,7 @@ function openAddTaskModal() {
 function openEditModal(task) {
     const modal = document.getElementById('edit-task-modal');
     modal.style.display = 'block';
+    modal.style.transform = 'translateY(20px)';
 
     // Set task details in the modal inputs
     const titleInput = modal.querySelector('#edit-task-title');
@@ -118,23 +119,28 @@ function openEditModal(task) {
 
     // Event listener for update button in edit task modal
     const updateBtn = modal.querySelector('#update-task-btn');
-    updateBtn.addEventListener('click', () => {
+    updateBtn.addEventListener('click', updateHandler);
+    function updateHandler() {
         console.log('submitted');
         task.title = titleInput.value;
         task.description = descriptionInput.value;
         saveTasks();
         renderTasks();
         modal.style.display = 'none';
-    });
+        // ! Whenever changing display to none of modal and we open the modal for another event listener,at that time the previous modal's closure is there and it's keeping that refference and when event triggered again the previous event listener will remain there and it is also called... So that to fix this kind of bug we can remove that previous event listener after finishing the task...
+        updateBtn.removeEventListener('click', updateHandler);
+    };
 
     // Event listener for delete button in edit task modal
     const deleteBtn = modal.querySelector('#delete-task-btn');
-    deleteBtn.addEventListener('click', () => {
+    deleteBtn.addEventListener('click', deleteHandler);
+    function deleteHandler() {
         tasks = tasks.filter((t) => t.id !== task.id);
         saveTasks();
         renderTasks();
         modal.style.display = 'none';
-    });
+        deleteBtn.removeEventListener('click', deleteHandler);
+    };
 }
 
 // ! Function to handle drag start event
