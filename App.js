@@ -102,7 +102,6 @@ function openAddTaskModal() {
 function openEditModal(task) {
     const modal = document.getElementById('edit-task-modal');
     modal.style.display = 'block';
-    modal.style.transform = 'translateY(20px)';
 
     // Set task details in the modal inputs
     const titleInput = modal.querySelector('#edit-task-title');
