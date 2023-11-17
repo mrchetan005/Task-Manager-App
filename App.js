@@ -1,4 +1,3 @@
-
 // Retrieve tasks from local storage or initialize an empty array
 let tasks = JSON.parse(localStorage.getItem('tasks')) || [];
 
@@ -45,7 +44,6 @@ function createTaskElement(task) {
     const taskEditButton = document.createElement('button');
     taskEditButton.className = 'edit-btn'
     taskEditButton.innerHTML = '&#9998;';
-    taskEditButton.id = Math.ceil(Math.random() * 10000000);
     taskElement.appendChild(taskEditButton);
 
     // Event listener for task click to open modal for editing/deleting
@@ -112,34 +110,35 @@ function openEditModal(task) {
 
     // Event listener for close button in edit task modal
     const closeBtn = modal.querySelector('.close');
-    closeBtn.addEventListener('click', () => {
+    function closeModal() {
         modal.style.display = 'none';
-    });
+        closeBtn.removeEventListener('click', closeModal);
+        updateBtn.removeEventListener('click', updateTask);
+        deleteBtn.removeEventListener('click', deleteTask);
+    }
+    closeBtn.addEventListener('click', closeModal);
 
     // Event listener for update button in edit task modal
     const updateBtn = modal.querySelector('#update-task-btn');
-    updateBtn.addEventListener('click', updateHandler);
-    function updateHandler() {
-        console.log('submitted');
+    function updateTask() {
         task.title = titleInput.value;
         task.description = descriptionInput.value;
         saveTasks();
         renderTasks();
-        modal.style.display = 'none';
-        // ! Whenever changing display to none of modal and we open the modal for another event listener,at that time the previous modal's closure is there and it's keeping that refference and when event triggered again the previous event listener will remain there and it is also called... So that to fix this kind of bug we can remove that previous event listener after finishing the task...
-        updateBtn.removeEventListener('click', updateHandler);
-    };
+        closeModal();
+    }
+    updateBtn.addEventListener('click', updateTask);
+
 
     // Event listener for delete button in edit task modal
     const deleteBtn = modal.querySelector('#delete-task-btn');
-    deleteBtn.addEventListener('click', deleteHandler);
-    function deleteHandler() {
+    function deleteTask() {
         tasks = tasks.filter((t) => t.id !== task.id);
         saveTasks();
         renderTasks();
-        modal.style.display = 'none';
-        deleteBtn.removeEventListener('click', deleteHandler);
-    };
+        closeModal();
+    }
+    deleteBtn.addEventListener('click', deleteTask);
 }
 
 // ! Function to handle drag start event
